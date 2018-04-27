@@ -1,4 +1,4 @@
-
+import dis
 
 # what_to_execute = {
 #     "instructions": [("LOAD_VALUE", 0),  # the first number
@@ -83,8 +83,29 @@ class Interpreter:
             elif instruction == "LOAD_NAME":
                 self.LOAD_NAME(argument)
 
+    def execute(self,what_to_execute):
+        instructions = what_to_execute["instructions"]
+        for each_step in instructions:
+            instruction, argument = each_step
+            argument = self.parse_argument(instruction,argument,what_to_execute)
+            bytecode_method = getattr(self, instruction)
+            if argument is None:
+                bytecode_method()
+            else:
+                bytecode_method(argument)
 
+
+def cond():
+    x = 3
+    if x < 5:
+        return 'yes'
+    else:
+        return 'no'
 
 if __name__ == '__main__':
-    interpreter = Interpreter()
-    interpreter.run_code(what_to_execute)
+    # interpreter = Interpreter()
+    # interpreter.run_code(what_to_execute)
+    print(cond.__code__.co_code)
+    print(list(cond.__code__.co_code))
+    print(dis.dis(cond))
+
