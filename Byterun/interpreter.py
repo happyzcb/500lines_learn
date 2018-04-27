@@ -17,16 +17,16 @@ import dis
 #         "numbers": [7, 5, 8] }
 
 what_to_execute = {
-        "instructions": [("LOAD_VALUE", 0),
-                         ("STORE_NAME", 0),
-                         ("LOAD_VALUE", 1),
-                         ("STORE_NAME", 1),
-                         ("LOAD_NAME", 0),
-                         ("LOAD_NAME", 1),
-                         ("ADD_TWO_VALUES", None),
-                         ("PRINT_ANSWER", None)],
-        "numbers": [1, 2],
-        "names":   ["a", "b"] }
+    "instructions": [("LOAD_VALUE", 0),
+                     ("STORE_NAME", 0),
+                     ("LOAD_VALUE", 1),
+                     ("STORE_NAME", 1),
+                     ("LOAD_NAME", 0),
+                     ("LOAD_NAME", 1),
+                     ("ADD_TWO_VALUES", None),
+                     ("PRINT_ANSWER", None)],
+    "numbers": [1, 2],
+    "names":   ["a", "b"] }
 
 class Interpreter:
     def __init__(self):
@@ -102,10 +102,18 @@ def cond():
     else:
         return 'no'
 
+def loop():
+    x=1
+    while x < 5:
+        x = x + 1
+    return x
+
+
 if __name__ == '__main__':
     # interpreter = Interpreter()
     # interpreter.run_code(what_to_execute)
     print(cond.__code__.co_code)
     print(list(cond.__code__.co_code))
     print(dis.dis(cond))
+    print(dis.dis(loop))
 
